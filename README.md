@@ -10,6 +10,13 @@ To test versions and environment debugging.
 ## To create a collection
 
 - docker volume inspect solr1
+- Copy conf to container
+- docker cp /var/lib/docker/volumes/solr1/zk_collection/conf/ solrcloud_solr1_1:/tmp/
+- bin/solr zk upconfig -n <name_for_configset> -d /tmp/conf -z zoo1:2181
+
+## Not working
+Execute command on host to create collection in container with conf from host
+
 - docker exec -it -v /path/on/host:/path/in/container solr1 bin/solr zk upconfig -n <name_for_configset> -d /path/in/container
 
 Replace /path/on/host with the actual path on your host machine where the configset directory is located, and /path/in/container with the corresponding path inside the container where you want to mount the directory.
