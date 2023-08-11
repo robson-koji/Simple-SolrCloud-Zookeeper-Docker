@@ -4,6 +4,9 @@ One zookeeper instance, and two Solr Cloud nodes.
 To test versions and environment debugging.
 
 - Wipe volumes it doesn't start/restart
+  - docker volume rm solrcloud_zoo1
+  - docker volume create solrcloud_zoo1
+
 - Running as root for convenience
 
 
