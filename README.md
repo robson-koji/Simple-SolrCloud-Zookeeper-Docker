@@ -2,26 +2,21 @@
 One zookeeper instance, and two Solr Cloud nodes.
 
 To test versions and environment debugging.
-
-- Wipe volumes it doesn't start/restart
-  - docker volume rm solrcloud_zoo1
-  - docker volume create solrcloud_zoo1
-
 - Running as root for convenience
+  
+       docker-compose run -d
 
 
 ## To create a collection
-
 - docker volume inspect solr1
-- Copy conf to container
-- docker cp /var/lib/docker/volumes/solr1/zk_collection/conf/ solrcloud_solr1_1:/tmp/
-- bin/solr zk upconfig -n <name_for_configset> -d /tmp/conf -z zoo1:2181
+- Copy conf to host container, mounted at the container- 
+- bin/solr zk upconfig -n <name_for_configset> -d <conteiner mounted volume> -z zoo1:2181
 
-## Not working
-Execute command on host to create collection in container with conf from host
+## Issues
+Whenever restart container, need to remove and create zookeeper volume. 
+  - docker volume rm solrcloud_zoo1
+  - docker volume create solrcloud_zoo1
 
-- docker exec -it -v /path/on/host:/path/in/container solr1 bin/solr zk upconfig -n <name_for_configset> -d /path/in/container
+## Follow this thread
+https://issues.apache.org/jira/browse/SOLR-16131?jql=text%20~%20"Error%20loading%20class%20%27solr.SQLHandler%27"
 
-Replace /path/on/host with the actual path on your host machine where the configset directory is located, and /path/in/container with the corresponding path inside the container where you want to mount the directory.
-
-This will mount the host directory into the container at the specified path, allowing the bin/solr zk upconfig command to access the configset directory from the host machine.
