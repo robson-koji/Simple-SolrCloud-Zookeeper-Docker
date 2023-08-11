@@ -3,14 +3,37 @@ One zookeeper instance, and two Solr Cloud nodes.
 
 To test versions and environment debugging.
 - Running as root for convenience
+ 
+      docker-compose run -d
+
+- At this point, Solr must be running in cloud mode, under Zookeeper configuration management.
+
+      http://localhost:8983/solr/#/
+
+
+## Create a collection
+- docker volume inspect solrcloud_solr1. By default, Docker creates host volumes in /var/lib/docker/volumes/
+
+        docker volume inspect solrcloud_solr1
+        "Mountpoint": "/var/lib/docker/volumes/solrcloud_solr1/_data",
   
-       docker-compose run -d
+- Copy configuration folder "conf" to host volume mounted in the path just above.
+- Log into the container. Any container with a Solr instance, to create a collection. 
 
+      docker exec -it -u 0 solrcloud_solr1_1 bash
 
-## To create a collection
-- docker volume inspect solr1
-- Copy conf to host container, mounted at the container- 
-- bin/solr zk upconfig -n <name_for_configset> -d <conteiner mounted volume> -z zoo1:2181
+- Upconfig configset
+  
+      bin/solr zk upconfig -n <name_for_configset> -d <host mounted volume> -z zoo1:2181
+
+- Create a collection
+  
+      http://localhost:8983/solr/#/~collections
+
+- Issue a SQL query
+
+      http://localhost:8983/solr/#/<your_collection>/sqlquery 
+
 
 ## Issues
 Whenever restart container, need to remove and create zookeeper volume. 
