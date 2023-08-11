@@ -11,7 +11,6 @@ services:
           - 2181:2181
         environment:
             ZOO_MY_ID: 1
-
     solr1:
         image: solr
         restart: always
@@ -22,7 +21,7 @@ services:
             - solr1:/opt/solr/server/logs
         environment:
             ZK_HOST: zoo1:2181
-
+            SOLR_MODULES: sql
     solr2:
         image: solr
         restart: always
@@ -33,7 +32,7 @@ services:
             - solr2:/opt/solr/server/logs
         environment:
             ZK_HOST: zoo1:2181
-
+            SOLR_MODULES: sql
     solr3:
         image: solr
         restart: always
@@ -44,6 +43,7 @@ services:
             - solr3:/opt/solr/server/logs
         environment:
             ZK_HOST: zoo1:2181
+            SOLR_MODULES: sql            
 
 volumes:
     zoo1:    
