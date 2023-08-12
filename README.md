@@ -43,3 +43,5 @@ Whenever restart container, need to remove and create zookeeper volume.
 ## Follow this thread
 https://issues.apache.org/jira/browse/SOLR-16131?jql=text%20~%20"Error%20loading%20class%20%27solr.SQLHandler%27"
 
+## Hard forked from here
+https://github.com/gerald-axel/SolrCloud
