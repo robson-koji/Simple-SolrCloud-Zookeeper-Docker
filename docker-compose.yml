@@ -19,7 +19,7 @@ services:
         volumes:
             - solr1_solr:/opt/solr/server/solr
             - solr1_logs:/opt/solr/server/logs
-            - solr1_data:/var/solr/data/
+            - solr1_data:/var/solr
         environment:
             ZK_HOST: zoo1:2181
             SOLR_MODULES: sql
@@ -31,7 +31,7 @@ services:
         volumes:
             - solr2_solr:/opt/solr/server/solr
             - solr2_logs:/opt/solr/server/logs
-            - solr2_data:/var/solr/data/
+            - solr2_data:/var/solr
         environment:
             ZK_HOST: zoo1:2181
             SOLR_MODULES: sql
