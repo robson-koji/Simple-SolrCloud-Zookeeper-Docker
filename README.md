@@ -37,8 +37,9 @@ To test versions and environment debugging.
 
 ## Issues
 Whenever restart container, need to remove and create zookeeper volume. 
-  - docker volume rm solrcloud_zoo1
-  - docker volume create solrcloud_zoo1
+
+      docker volume rm solrcloud_zoo1
+      docker volume create solrcloud_zoo1
 
 ## Follow this thread
 https://issues.apache.org/jira/browse/SOLR-16131?jql=text%20~%20"Error%20loading%20class%20%27solr.SQLHandler%27"
