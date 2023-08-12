@@ -17,8 +17,8 @@ To test versions and environment debugging.
         docker volume inspect solrcloud_solr1
         "Mountpoint": "/var/lib/docker/volumes/solrcloud_solr1/_data",
   
-- Copy configuration folder "conf" to host volume mounted in the path just above.
-- Log into the container. Any container with a Solr instance, to create a collection. 
+- Copy your configuration folder "conf" to host volume mounted in the path just above.
+- Log into the container. Any container with a Solr instance, to upconfig configset to ZK. 
 
       docker exec -it -u 0 solrcloud_solr1_1 bash
 
