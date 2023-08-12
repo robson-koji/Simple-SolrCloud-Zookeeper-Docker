@@ -4,9 +4,9 @@ services:
         image: zookeeper
         restart: always
         volumes:
-            - zoo1:/conf
-            - zoo1:/data
-            - zoo1:/datalog
+            - zoo1_conf:/conf
+            - zoo1_data:/data
+            - zoo1_datalog:/datalog
         ports:
           - 2181:2181
         environment:
@@ -17,8 +17,9 @@ services:
         ports:
             - 8983:8983
         volumes:
-            - solr1:/opt/solr/server/solr
-            - solr1:/opt/solr/server/logs
+            - solr1_solr:/opt/solr/server/solr
+            - solr1_logs:/opt/solr/server/logs
+            - solr1_data:/var/solr/data/
         environment:
             ZK_HOST: zoo1:2181
             SOLR_MODULES: sql
@@ -28,25 +29,20 @@ services:
         ports:
             - 8984:8983
         volumes:
-            - solr2:/opt/solr/server/solr
-            - solr2:/opt/solr/server/logs
+            - solr2_solr:/opt/solr/server/solr
+            - solr2_logs:/opt/solr/server/logs
+            - solr2_data:/var/solr/data/
         environment:
             ZK_HOST: zoo1:2181
             SOLR_MODULES: sql
-    solr3:
-        image: solr
-        restart: always
-        ports:
-            - 8985:8983
-        volumes:
-            - solr3:/opt/solr/server/solr
-            - solr3:/opt/solr/server/logs
-        environment:
-            ZK_HOST: zoo1:2181
-            SOLR_MODULES: sql            
 
 volumes:
-    zoo1:    
-    solr1:
-    solr2:
-    solr3:
+    zoo1_conf:
+    zoo1_data:
+    zoo1_datalog:
+    solr1_solr:
+    solr1_logs:
+    solr1_data:
+    solr2_solr:
+    solr2_logs:
+    solr2_data:
